@@ -18,7 +18,12 @@ int main(int argc, char *argv[]) {
 	} else {
 
 		if (argc > 1) {
+
 			cout << argc << endl; // prints Random Board!
+
+	        BoardDistributor boardDistributor;
+	        boardDistributor.distribute(argv[1]);
+
 		}
 
 	}
@@ -28,9 +33,6 @@ int main(int argc, char *argv[]) {
 	}
 
 	cout << "Random Board!" << endl; // prints Random Board!
-
-	BoardDistributor boardDistributor;
-	boardDistributor.distribute(argv[1]);
 
 	return 0;
 

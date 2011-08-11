@@ -19,3 +19,8 @@ ConsoleBoardInputTransformer::ConsoleBoardInputTransformer(char *argv[]) {
 ConsoleBoardInputTransformer::~ConsoleBoardInputTransformer() {
     // TODO Auto-generated destructor stub
 }
+
+BoardInput* ConsoleBoardInputTransformer::transform() {
+    cout << "ConsoleBoardInputTransformer::transform()" << endl;
+    return new BoardInput();
+}

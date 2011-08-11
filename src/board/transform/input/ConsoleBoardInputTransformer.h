@@ -19,10 +19,7 @@ public:
     ConsoleBoardInputTransformer(char *argv[]);
     virtual ~ConsoleBoardInputTransformer();
 
-    virtual BoardInput* transform() {
-        cout << "ConsoleBoardInputTransformer::transform()" << endl;
-        return new BoardInput();
-    }
+    virtual BoardInput* transform();
 
 };
 

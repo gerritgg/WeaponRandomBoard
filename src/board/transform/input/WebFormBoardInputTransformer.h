@@ -19,11 +19,7 @@ public:
     WebFormBoardInputTransformer(char *argv[]);
     virtual ~WebFormBoardInputTransformer();
 
-    virtual BoardInput* transform() {
-        cout << "WebFormBoardInputTransformer::transform()" << endl;
-        return new BoardInput();
-    }
-
+    virtual BoardInput* transform();
 };
 
 #endif /* WEBFORMBOARDINPUTTRANSFORMER_H_ */

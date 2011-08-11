@@ -19,3 +19,8 @@ WebFormBoardInputTransformer::WebFormBoardInputTransformer(char *argv[]) {
 WebFormBoardInputTransformer::~WebFormBoardInputTransformer() {
     // TODO Auto-generated destructor stub
 }
+
+BoardInput* WebFormBoardInputTransformer::transform() {
+    cout << "WebFormBoardInputTransformer::transform()" << endl;
+    return new BoardInput();
+}

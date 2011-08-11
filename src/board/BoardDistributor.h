@@ -9,6 +9,7 @@
 #define BOARDDISTRIBUTOR_H_
 
 #include "Board.h"
+#include "transform/input/BoardInput.h"
 
 class BoardDistributor {
 public:
@@ -16,8 +17,7 @@ public:
     BoardDistributor();
     virtual ~BoardDistributor();
 
-    Board distribute(char *boardItems);
-    Board distribute(char *boardItems[]);
+    static Board distribute(BoardInput* boardInput);
 
 };
 

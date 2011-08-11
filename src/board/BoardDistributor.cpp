@@ -19,13 +19,9 @@ BoardDistributor::~BoardDistributor() {
     // TODO Auto-generated destructor stub
 }
 
-Board BoardDistributor::distribute(char *boardItems) {
+Board BoardDistributor::distribute(BoardInput* boardInput) {
     Board b;
-    cout << "BoardDistributor::distribute(char *boardItems) : " << boardItems << endl;
-    return b;
-}
-
-Board BoardDistributor::distribute(char *boardItems[]) {
-    Board b;
+    b.initialise(boardInput);
+    cout << "BoardDistributor::distribute(char *boardItems) : " << "some_items" << endl;
     return b;
 }

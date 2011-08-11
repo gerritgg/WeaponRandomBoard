@@ -15,3 +15,11 @@ Board::Board() {
 Board::~Board() {
     // TODO Auto-generated destructor stub
 }
+
+void Board::initialise(BoardInput* boardInput) {
+
+}
+
+int Board::getNumberOfWeapons() {
+    return weapons.size();
+}

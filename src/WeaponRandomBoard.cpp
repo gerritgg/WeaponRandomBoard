@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "board/BoardDistributor.h"
+#include "board/transform/input/BoardInputTransformer.h"
 
 int main(int argc, char *argv[]) {
 
@@ -21,18 +22,27 @@ int main(int argc, char *argv[]) {
 
 			cout << argc << endl; // prints Random Board!
 
-	        BoardDistributor boardDistributor;
-	        boardDistributor.distribute(argv[1]);
+	        Board b = BoardDistributor::distribute(BoardInputTransformer
+                ::createTransformer(argv, BoardInputTransformer::CONSOLE)
+	            ->transform());
+	        cout << "b.getNumberOfWeapons() : " << b.getNumberOfWeapons()
+                << endl;
 
 		}
 
 	}
 
-	for (int i = 0; i < argc; ++i) {
-		cout << argv[i] << endl;
-	}
+	bool printArguments = false;
 
-	cout << "Random Board!" << endl; // prints Random Board!
+	if (printArguments) {
+
+        for (int i = 0; i < argc; ++i) {
+            cout << argv[i] << endl;
+        }
+
+    }
+
+	cout << "Random Board Finished!" << endl; // prints Random Board!
 
 	return 0;
 

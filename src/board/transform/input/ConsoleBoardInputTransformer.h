@@ -10,13 +10,14 @@
 
 #include <iostream>
 #include "BoardInputTransformer.h"
+#include "../../../util/StringUtil.h"
 
 using namespace std;
 
 class ConsoleBoardInputTransformer: public BoardInputTransformer {
 public:
     ConsoleBoardInputTransformer();
-    ConsoleBoardInputTransformer(char *argv[]);
+    ConsoleBoardInputTransformer(char *inputItems[], int numInputItems);
     virtual ~ConsoleBoardInputTransformer();
 
     virtual BoardInput* transform();

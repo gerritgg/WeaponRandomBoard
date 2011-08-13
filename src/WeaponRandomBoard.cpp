@@ -20,10 +20,8 @@ int main(int argc, char *argv[]) {
 
 		if (argc > 1) {
 
-			cout << argc << endl; // prints Random Board!
-
 	        Board b = BoardDistributor::distribute(BoardInputTransformer
-                ::createTransformer(argv, BoardInputTransformer::CONSOLE)
+                ::createTransformer(argv, argc, BoardInputTransformer::CONSOLE)
 	            ->transform());
 	        cout << "b.getNumberOfWeapons() : " << b.getNumberOfWeapons()
                 << endl;

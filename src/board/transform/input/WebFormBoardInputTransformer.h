@@ -16,7 +16,7 @@ using namespace std;
 class WebFormBoardInputTransformer: public BoardInputTransformer {
 public:
     WebFormBoardInputTransformer();
-    WebFormBoardInputTransformer(char *argv[]);
+    WebFormBoardInputTransformer(char *inputItems[], int numInputItems);
     virtual ~WebFormBoardInputTransformer();
 
     virtual BoardInput* transform();

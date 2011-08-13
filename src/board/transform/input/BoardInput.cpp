@@ -12,7 +12,15 @@ BoardInput::BoardInput() {
 
 }
 
+BoardInput::BoardInput(map<string, int> weaponsInput)
+        : weaponsInput(weaponsInput) {
+
+}
+
 BoardInput::~BoardInput() {
     // TODO Auto-generated destructor stub
 }
 
+map<string, int> BoardInput::getWeaponsInput() {
+    return weaponsInput;
+}

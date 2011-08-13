@@ -8,7 +8,6 @@
 #ifndef BOARDINPUTTRANSFORMER_H_
 #define BOARDINPUTTRANSFORMER_H_
 
-#include <string>
 #include "BoardInput.h"
 
 using namespace std;
@@ -20,10 +19,17 @@ public:
     static const int WEBFORM = 2;
 
     BoardInputTransformer();
+    BoardInputTransformer(char *inputItems[], int numInputItems);
     virtual ~BoardInputTransformer();
 
     virtual BoardInput* transform() = 0;
-    static BoardInputTransformer* createTransformer(char *argv[], int type);
+    static BoardInputTransformer* createTransformer(char *argv[],
+        int numInputItems, int type);
+
+protected:
+
+    char *inputItems[];
+    int numberOfInputItems;
 
 };
 

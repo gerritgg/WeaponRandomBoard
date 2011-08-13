@@ -8,19 +8,20 @@
 #include "WebFormBoardInputTransformer.h"
 
 WebFormBoardInputTransformer::WebFormBoardInputTransformer() {
-    // TODO Auto-generated constructor stub
-
 }
 
-WebFormBoardInputTransformer::WebFormBoardInputTransformer(char *argv[]) {
-
+WebFormBoardInputTransformer::WebFormBoardInputTransformer(char *inputItems[],
+        int numInputItems) : BoardInputTransformer(inputItems, numInputItems) {
 }
 
 WebFormBoardInputTransformer::~WebFormBoardInputTransformer() {
-    // TODO Auto-generated destructor stub
 }
 
 BoardInput* WebFormBoardInputTransformer::transform() {
-    cout << "WebFormBoardInputTransformer::transform()" << endl;
+
+    cout << "WebFormBoardInputTransformer::transform() - NumberOfInputItems : "
+        << numberOfInputItems << endl;
+
     return new BoardInput();
+
 }

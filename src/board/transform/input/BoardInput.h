@@ -8,10 +8,25 @@
 #ifndef BOARDINPUT_H_
 #define BOARDINPUT_H_
 
+#include <map>
+#include <string>
+#include <vector>
+
+using namespace std;
+
 class BoardInput {
 public:
+
     BoardInput();
+    BoardInput(map<string, int> weaponsInput);
     virtual ~BoardInput();
+
+    map<string, int> getWeaponsInput();
+
+private:
+
+    map<string, int> weaponsInput;
+
 };
 
 #endif /* BOARDINPUT_H_ */

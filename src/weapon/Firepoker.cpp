@@ -8,11 +8,11 @@
 #include "Firepoker.h"
 
 Firepoker::Firepoker() {
-    // TODO Auto-generated constructor stub
-
 }
 
 Firepoker::~Firepoker() {
-    // TODO Auto-generated destructor stub
 }
 
+void Firepoker::use() {
+    cout << "Firepoker::use()";
+}

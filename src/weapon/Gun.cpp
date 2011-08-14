@@ -8,11 +8,11 @@
 #include "Gun.h"
 
 Gun::Gun() {
-    // TODO Auto-generated constructor stub
-
 }
 
 Gun::~Gun() {
-    // TODO Auto-generated destructor stub
 }
 
+void Gun::use() {
+    cout << "Gun::use()";
+}

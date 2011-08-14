@@ -12,8 +12,12 @@
 
 class Firepoker: public Weapon {
 public:
+
     Firepoker();
     virtual ~Firepoker();
+
+    virtual void use();
+
 };
 
 #endif /* FIREPOKER_H_ */

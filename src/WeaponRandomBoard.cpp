@@ -20,11 +20,11 @@ int main(int argc, char *argv[]) {
 
 		if (argc > 1) {
 
-	        Board b = BoardDistributor::distribute(BoardInputTransformer
+	        Board board = BoardDistributor::distribute(BoardInputTransformer
                 ::createTransformer(argv, argc, BoardInputTransformer::CONSOLE)
 	            ->transform());
-	        cout << "b.getNumberOfWeapons() : " << b.getNumberOfWeapons()
-                << endl;
+
+	        board.useAllWeapons();
 
 		}
 

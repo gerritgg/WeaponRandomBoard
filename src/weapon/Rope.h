@@ -12,8 +12,12 @@
 
 class Rope: public Weapon {
 public:
+
     Rope();
     virtual ~Rope();
+
+    virtual void use();
+
 };
 
 #endif /* ROPE_H_ */

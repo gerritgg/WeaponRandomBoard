@@ -12,8 +12,12 @@
 
 class Knife: public Weapon {
 public:
+
     Knife();
     virtual ~Knife();
+
+    virtual void use();
+
 };
 
 #endif /* KNIFE_H_ */

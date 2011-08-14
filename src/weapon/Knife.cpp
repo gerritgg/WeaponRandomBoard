@@ -8,11 +8,11 @@
 #include "Knife.h"
 
 Knife::Knife() {
-    // TODO Auto-generated constructor stub
-
 }
 
 Knife::~Knife() {
-    // TODO Auto-generated destructor stub
 }
 
+void Knife::use() {
+    cout << "Knife::use()";
+}

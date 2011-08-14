@@ -21,12 +21,15 @@ public:
     Board();
     virtual ~Board();
 
-    int getNumberOfWeapons();
     void initialise(BoardInput* boardInput);
+    void useAllWeapons();
+    int getNumberOfWeapons();
 
 private:
 
-    vector<Weapon> weapons;
+    map<int, Weapon*> weapons;
+
+    void buildWeapon(string weaponName, int weaponCount);
 
 };
 

@@ -8,11 +8,11 @@
 #include "Rope.h"
 
 Rope::Rope() {
-    // TODO Auto-generated constructor stub
-
 }
 
 Rope::~Rope() {
-    // TODO Auto-generated destructor stub
 }
 
+void Rope::use() {
+    cout << "Rope::use()";
+}

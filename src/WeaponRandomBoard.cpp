@@ -24,7 +24,8 @@ int main(int argc, char *argv[]) {
                 ::createTransformer(argv, argc, BoardInputTransformer::CONSOLE)
 	            ->transform());
 
-	        board.useAllWeapons();
+//	        board.useAllWeapons();
+	        board.print();
 
 		}
 
@@ -40,7 +41,7 @@ int main(int argc, char *argv[]) {
 
     }
 
-	cout << "Random Board Finished!" << endl; // prints Random Board!
+	cout << "Done!" << endl; // prints Random Board!
 
 	return 0;
 

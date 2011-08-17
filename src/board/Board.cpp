@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include "Board.h"
+#include "../util/RandomUtil.h"
+#include "transform/print/BoardPrinter.h"
 
 using namespace std;
 
@@ -29,31 +31,41 @@ void Board::initialise(BoardInput* boardInput) {
 
     for (pos = weaponsInput.begin(); pos != weaponsInput.end(); ++pos) {
 
-        cout << "Board::initialise - " << "key: \"" << pos->first << "\" "
-            << "value: " << pos->second << endl;
-
         buildWeapon(pos->first, pos->second);
 
         numberOfTotalWeapons += pos->second;
 
     }
 
+    randomise();
+
     cout << "Number of Total weapons : " << numberOfTotalWeapons << endl;
-    cout << "Confirming Number of Total weapons : " << weapons.size() << endl;
 
 }
 
 void Board::buildWeapon(string weaponName, int weaponCount) {
 
     try {
+
         for (int var = 0; var < weaponCount; ++var) {
+
             weapons[weapons.size()] = Weapon::createWeapon(weaponName);
-            cout << "Board::buildWeapon - weapons.size() : " << weapons.size()
-                << endl;
+
         }
+
     } catch (exception& e) {
         cout << "Could not create weapon : " << e.what() << endl;
     }
+
+}
+
+void Board::randomise() {
+
+    for (int i = 0; i< (int) weapons.size(); ++i) {
+        weaponsIndexesNotShuffled.push_back(i);
+    }
+
+    weaponsIndexShuffled = RandomUtil::randomise(weaponsIndexesNotShuffled);
 
 }
 
@@ -76,4 +88,18 @@ void Board::useAllWeapons() {
 
     }
 
+}
+
+void Board::print() {
+    print(BoardPrintType::PRINT_TYPE_PLAIN);
+}
+
+void Board::print(BoardPrintType::PrintType printType) {
+
+    BoardPrinter::createPrinter(printType)->print(this);
+
+}
+
+vector<int> Board::getWeaponsIndexesShuffled() {
+    return weaponsIndexShuffled;
 }

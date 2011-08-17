@@ -5,6 +5,7 @@
  *      Author: c0rn0
  */
 
+#include <stdlib.h>
 #include "ConsoleBoardInputTransformer.h"
 
 ConsoleBoardInputTransformer::ConsoleBoardInputTransformer() {
@@ -21,7 +22,7 @@ BoardInput* ConsoleBoardInputTransformer::transform() {
 
     map<string, int> weaponsInput;
 
-    for (int var = 0; var < numberOfInputItems; ++var) {
+    for (int var = 1; var < numberOfInputItems; ++var) {
 
         vector<string> weaponCountSplit = StringUtil::split(inputItems[var],
             ':');

@@ -5,6 +5,7 @@
  *      Author: c0rn0
  */
 
+#include <string.h>
 #include "BoardInputTransformer.h"
 #include "ConsoleBoardInputTransformer.h"
 #include "WebFormBoardInputTransformer.h"

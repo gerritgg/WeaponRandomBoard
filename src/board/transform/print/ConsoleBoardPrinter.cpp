@@ -15,7 +15,6 @@ ConsoleBoardPrinter::~ConsoleBoardPrinter() {
 
 void ConsoleBoardPrinter::print(Board* board) {
 
-    vector<int>::iterator it;
     vector<int> weaponsIndexesShuffled = board->getWeaponsIndexesShuffled();
 
     for (int var = 0; var < (int) weaponsIndexesShuffled.size(); ++var) {

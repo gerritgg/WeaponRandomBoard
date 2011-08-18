@@ -16,6 +16,11 @@ Board::Board() {
 }
 
 Board::~Board() {
+
+    for (int var = 0; var < (int) weapons.size(); ++var) {
+        delete weapons[var];
+    }
+
 }
 
 void Board::initialise(BoardInput* boardInput) {
@@ -95,9 +100,9 @@ void Board::print() {
 }
 
 void Board::print(BoardPrintType::PrintType printType) {
-
-    BoardPrinter::createPrinter(printType)->print(this);
-
+    BoardPrinter *printer = BoardPrinter::createPrinter(printType);
+    printer->print(this);
+    delete printer;
 }
 
 vector<int> Board::getWeaponsIndexesShuffled() {

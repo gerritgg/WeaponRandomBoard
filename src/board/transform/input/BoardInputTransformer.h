@@ -28,7 +28,7 @@ public:
 
 protected:
 
-    char *inputItems[];
+    vector<string> inputItemsVector;
     int numberOfInputItems;
 
 };

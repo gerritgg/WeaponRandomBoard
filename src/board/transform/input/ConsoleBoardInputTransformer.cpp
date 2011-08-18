@@ -24,8 +24,8 @@ BoardInput* ConsoleBoardInputTransformer::transform() {
 
     for (int var = 1; var < numberOfInputItems; ++var) {
 
-        vector<string> weaponCountSplit = StringUtil::split(inputItems[var],
-            ':');
+        vector<string> weaponCountSplit = StringUtil::split(
+            inputItemsVector[var], ':');
 
         if (weaponCountSplit.size() > 0) {
             weaponsInput[weaponCountSplit[0]] = atoi(weaponCountSplit[1]

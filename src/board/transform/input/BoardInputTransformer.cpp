@@ -11,8 +11,6 @@
 #include "WebFormBoardInputTransformer.h"
 
 BoardInputTransformer::BoardInputTransformer() {
-    // TODO Auto-generated constructor stub
-
 }
 
 BoardInputTransformer::BoardInputTransformer(char *inputItemsArg[],
@@ -20,16 +18,7 @@ BoardInputTransformer::BoardInputTransformer(char *inputItemsArg[],
 
     for (int var = 0; var < numInputItems; ++var) {
 
-        /*
-         * Each item in the array must first be initialised (memory allocated)
-         * otherwise program crashes with "Segmentation fault" due to accessing
-         * invalid memory.
-         *
-         * TODO : Must figure out why 90 is necessary to make test case pass.
-         */
-        inputItems[var] = new char[90];
-
-        strcpy(inputItems[var], inputItemsArg[var]);
+        inputItemsVector.push_back(inputItemsArg[var]);
 
     }
 
@@ -38,7 +27,6 @@ BoardInputTransformer::BoardInputTransformer(char *inputItemsArg[],
 }
 
 BoardInputTransformer::~BoardInputTransformer() {
-    // TODO Auto-generated destructor stub
 }
 
 BoardInputTransformer* BoardInputTransformer::createTransformer(char *argv[],

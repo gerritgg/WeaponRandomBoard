@@ -15,25 +15,29 @@
 Weapon::Weapon() {
 }
 
+Weapon::Weapon(string weaponName) {
+    name = weaponName;
+}
+
 Weapon::~Weapon() {
 }
 
 Weapon* Weapon::createWeapon(string name) {
 
     if (name == "firepoker") {
-        return new Firepoker();
+        return new Firepoker(name);
     }
 
     if (name == "gun") {
-        return new Gun();
+        return new Gun(name);
     }
 
     if (name == "knife") {
-        return new Knife();
+        return new Knife(name);
     }
 
     if (name == "rope") {
-        return new Rope();
+        return new Rope(name);
     }
 
     throw new CouldNotCreateWeaponException();
@@ -42,4 +46,8 @@ Weapon* Weapon::createWeapon(string name) {
 
 void Weapon::use() {
 
+}
+
+string Weapon::getName() {
+    return name;
 }

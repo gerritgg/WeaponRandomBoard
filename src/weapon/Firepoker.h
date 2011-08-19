@@ -14,6 +14,7 @@ class Firepoker: public Weapon {
 public:
 
     Firepoker();
+    Firepoker(string name);
     virtual ~Firepoker();
 
     virtual void use();

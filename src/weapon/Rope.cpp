@@ -10,6 +10,9 @@
 Rope::Rope() {
 }
 
+Rope::Rope(string name) : Weapon(name) {
+}
+
 Rope::~Rope() {
 }
 

@@ -17,10 +17,17 @@ class Weapon {
 public:
 
     Weapon();
+    Weapon(string name);
     virtual ~Weapon();
 
     static Weapon* createWeapon(string name);
     virtual void use() = 0;
+    string getName();
+
+
+private:
+
+    string name;
 
 };
 

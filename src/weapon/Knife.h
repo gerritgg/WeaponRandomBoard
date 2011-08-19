@@ -14,6 +14,7 @@ class Knife: public Weapon {
 public:
 
     Knife();
+    Knife(string name);
     virtual ~Knife();
 
     virtual void use();

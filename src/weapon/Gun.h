@@ -14,6 +14,7 @@ class Gun: public Weapon {
 public:
 
     Gun();
+    Gun(string name);
     virtual ~Gun();
 
     virtual void use();

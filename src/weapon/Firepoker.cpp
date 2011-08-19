@@ -10,6 +10,9 @@
 Firepoker::Firepoker() {
 }
 
+Firepoker::Firepoker(string name) : Weapon(name) {
+}
+
 Firepoker::~Firepoker() {
 }
 

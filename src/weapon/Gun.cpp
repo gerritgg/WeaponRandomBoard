@@ -10,6 +10,9 @@
 Gun::Gun() {
 }
 
+Gun::Gun(string name) : Weapon(name) {
+}
+
 Gun::~Gun() {
 }
 

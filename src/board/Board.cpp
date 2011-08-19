@@ -6,11 +6,14 @@
  */
 
 #include <iostream>
+#include <sstream>
 #include "Board.h"
 #include "../util/RandomUtil.h"
 #include "transform/print/BoardPrinter.h"
 
 using namespace std;
+
+Logger* Board::LOGGER = Logger::getLogger("Board");
 
 Board::Board() {
 }
@@ -44,7 +47,9 @@ void Board::initialise(BoardInput* boardInput) {
 
     randomise();
 
-    cout << "Number of Total weapons : " << numberOfTotalWeapons << endl;
+    stringstream ss;
+    ss << "Number of Total weapons : " << numberOfTotalWeapons;
+    LOGGER->info(ss.str());
 
 }
 
@@ -100,9 +105,16 @@ void Board::print() {
 }
 
 void Board::print(BoardPrintType::PrintType printType) {
+
     BoardPrinter *printer = BoardPrinter::createPrinter(printType);
     printer->print(this);
+
     delete printer;
+
+}
+
+map<int, Weapon*> Board::getWeapons() {
+    return weapons;
 }
 
 vector<int> Board::getWeaponsIndexesShuffled() {

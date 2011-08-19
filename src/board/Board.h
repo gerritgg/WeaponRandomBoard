@@ -13,6 +13,7 @@
 #include "transform/input/BoardInput.h"
 #include "transform/print/BoardPrintType.h"
 #include "../weapon/Weapon.h"
+#include "../util/Logger.h"
 
 using namespace std;
 
@@ -27,9 +28,12 @@ public:
     int getNumberOfWeapons();
     void print();
     void print(BoardPrintType::PrintType printType);
+    map<int, Weapon*> getWeapons();
     vector<int> getWeaponsIndexesShuffled();
 
 private:
+
+    static Logger* LOGGER;
 
     map<int, Weapon*> weapons;
     vector<int> weaponsIndexesNotShuffled;

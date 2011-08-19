@@ -14,6 +14,7 @@ class Rope: public Weapon {
 public:
 
     Rope();
+    Rope(string name);
     virtual ~Rope();
 
     virtual void use();

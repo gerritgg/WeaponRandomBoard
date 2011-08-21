@@ -6,4 +6,3 @@
  */
 
 #include "../board/transform/input/BoardInput.h"
-

@@ -8,6 +8,7 @@
 
 #include "board/BoardDistributor.h"
 #include "board/transform/input/BoardInputTransformer.h"
+#include "board/transform/print/BoardPrinter.h"
 
 #include <log4cpp/Category.hh>
 #include <log4cpp/FileAppender.hh>
@@ -28,14 +29,17 @@ int main(int argc, char *argv[]) {
 
 	        BoardInputTransformer *transformer = BoardInputTransformer
                 ::createTransformer(argv, argc, BoardInputTransformer::CONSOLE);
-	        BoardInput *boardInput = transformer->transform();
-	        Board board = BoardDistributor::distribute(boardInput);
+	        BoardInput* boardInput = transformer->transform();
+	        Board* board = BoardDistributor::distribute(boardInput);
+
+	        BoardPrinter* printer = BoardPrinter::createPrinter(BoardPrintType
+                ::PRINT_TYPE_HTML, board);
+
+	        board->initialise(boardInput);
 
 	        delete transformer;
 	        delete boardInput;
-
-//	        board.useAllWeapons();
-	        board.print(BoardPrintType::PRINT_TYPE_HTML);
+	        delete printer;
 
 		}
 

@@ -13,10 +13,11 @@
 class HtmlBoardPrinter: public BoardPrinter {
 public:
 
-    HtmlBoardPrinter();
+    HtmlBoardPrinter(Board*);
     virtual ~HtmlBoardPrinter();
 
-    virtual void print(Board* board);
+    virtual void print();
+    virtual void update(Subject*);
 
 };
 

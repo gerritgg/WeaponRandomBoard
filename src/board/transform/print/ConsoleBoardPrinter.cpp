@@ -7,15 +7,23 @@
 
 #include "ConsoleBoardPrinter.h"
 
-ConsoleBoardPrinter::ConsoleBoardPrinter() {
+ConsoleBoardPrinter::ConsoleBoardPrinter(Board* board) : BoardPrinter(board) {
 }
 
 ConsoleBoardPrinter::~ConsoleBoardPrinter() {
 }
 
-void ConsoleBoardPrinter::print(Board* board) {
+void ConsoleBoardPrinter::update(Subject* changedSubject) {
 
-    vector<int> weaponsIndexesShuffled = board->getWeaponsIndexesShuffled();
+    if (subject == changedSubject) {
+        print();
+    }
+
+}
+
+void ConsoleBoardPrinter::print() {
+
+    vector<int> weaponsIndexesShuffled = subject->getWeaponsIndexesShuffled();
 
     for (int var = 0; var < (int) weaponsIndexesShuffled.size(); ++var) {
         cout << " " << weaponsIndexesShuffled[var];

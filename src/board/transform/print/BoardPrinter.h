@@ -9,16 +9,22 @@
 #define BOARDPRINTER_H_
 
 #include "../../Board.h"
+#include "../../../util/observer/Observer.h"
 
-class BoardPrinter {
+class BoardPrinter : public Observer {
 public:
 
-    BoardPrinter();
+    BoardPrinter(Board*);
     virtual ~BoardPrinter();
 
-    virtual void print(Board* board) = 0;
+    virtual void print() = 0;
 
-    static BoardPrinter* createPrinter(BoardPrintType::PrintType printType);
+    static BoardPrinter* createPrinter(BoardPrintType::PrintType, Board*);
+
+
+protected:
+
+    Board* subject;
 
 };
 

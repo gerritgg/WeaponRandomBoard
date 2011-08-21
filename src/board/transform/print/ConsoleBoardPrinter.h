@@ -13,10 +13,14 @@
 class ConsoleBoardPrinter: public BoardPrinter {
 public:
 
-    ConsoleBoardPrinter();
+    ConsoleBoardPrinter(Board*);
     virtual ~ConsoleBoardPrinter();
 
-    virtual void print(Board* board);
+    virtual void print();
+    virtual void update(Subject*);
+
+private:
+
 
 };
 

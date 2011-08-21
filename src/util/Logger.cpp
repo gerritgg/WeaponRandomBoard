@@ -7,21 +7,15 @@
 
 #include "Logger.h"
 
-map<string, Logger*>* createMap(map<string, Logger*>* loggers) {
-    if (!loggers) {
-        loggers = new map<string, Logger*>;
-    }
-    return loggers;
-}
-
-map<string, Logger*>* Logger::loggers = createMap(loggers);;
+map<string, Logger*>* Logger::loggers;
+bool Logger::__init = Logger::init();
 
 Logger::~Logger() {
 }
 
 Logger* Logger::getLogger(string name) {
 
-    loggers = createMap(loggers);
+    init();
 
     map<string, Logger*>::iterator it;
     it = loggers->find(name);
@@ -31,6 +25,7 @@ Logger* Logger::getLogger(string name) {
         Logger* logger = new Logger(name);
         loggers->insert(pair<string, Logger*>(name, logger));
 
+        cout << "Logger::loggers.size : " << loggers->size() << endl;
         return logger;
 
     } else {

@@ -7,16 +7,25 @@
 
 #include "HtmlBoardPrinter.h"
 
-HtmlBoardPrinter::HtmlBoardPrinter() {
+HtmlBoardPrinter::HtmlBoardPrinter(Board* board) : BoardPrinter(board) {
 }
 
 HtmlBoardPrinter::~HtmlBoardPrinter() {
 }
 
-void HtmlBoardPrinter::print(Board* board) {
+void HtmlBoardPrinter::update(Subject* changedSubject) {
 
-    map<int, Weapon*> weapons = board->getWeapons();
-    vector<int> weaponsIndexesShuffled = board->getWeaponsIndexesShuffled();
+
+    if (subject == changedSubject) {
+        print();
+    }
+
+}
+
+void HtmlBoardPrinter::print() {
+
+    map<int, Weapon*> weapons = subject->getWeapons();
+    vector<int> weaponsIndexesShuffled = subject->getWeaponsIndexesShuffled();
 
     cout << "<table border='1'>" << endl;
     cout << "<tr><td colspan='2'>Total weapons : "<< weapons.size()

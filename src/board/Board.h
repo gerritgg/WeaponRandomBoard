@@ -14,10 +14,11 @@
 #include "transform/print/BoardPrintType.h"
 #include "../weapon/Weapon.h"
 #include "../util/Logger.h"
+#include "../util/observer/Subject.h"
 
 using namespace std;
 
-class Board {
+class Board : public Subject {
 public:
 
     Board();

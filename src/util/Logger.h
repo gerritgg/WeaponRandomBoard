@@ -24,6 +24,20 @@ public:
 
     virtual ~Logger();
 
+    static bool __init;
+    static bool init() {
+
+cout << "Logger::init() - 1" << endl;
+        if (!loggers) {
+cout << "Logger::init() - 2" << endl;
+            loggers = new map<string, Logger*>;
+        }
+cout << "Logger::init() - 3" << endl;
+
+        return true;
+
+    }
+
     static map<string, Logger*>* loggers;
     static Logger* getLogger(string name);
 

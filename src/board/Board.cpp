@@ -51,6 +51,11 @@ void Board::initialise(BoardInput* boardInput) {
     ss << "Number of Total weapons : " << numberOfTotalWeapons;
     LOGGER->info(ss.str());
 
+    LOGGER->info("Board::initialise - Before notify call.");
+    cout << "GOTJIR!!!!!" << endl;
+    notify();
+    LOGGER->info("Board::initialise - After notify call.");
+
 }
 
 void Board::buildWeapon(string weaponName, int weaponCount) {
@@ -106,10 +111,10 @@ void Board::print() {
 
 void Board::print(BoardPrintType::PrintType printType) {
 
-    BoardPrinter *printer = BoardPrinter::createPrinter(printType);
-    printer->print(this);
-
-    delete printer;
+//    BoardPrinter *printer = BoardPrinter::createPrinter(printType);
+//    printer->print(this);
+//
+//    delete printer;
 
 }
 

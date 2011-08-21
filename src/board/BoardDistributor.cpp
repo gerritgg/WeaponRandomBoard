@@ -16,10 +16,16 @@ BoardDistributor::BoardDistributor() {
 BoardDistributor::~BoardDistributor() {
 }
 
-Board BoardDistributor::distribute(BoardInput* boardInput) {
+Board* BoardDistributor::distribute(BoardInput* boardInput) {
 
-    Board b;
-    b.initialise(boardInput);
-    return b;
+    /*
+     * The contract on this distributor needs to change drastically due to the
+     * Printer that is an observer on the board now which only prints the
+     * board upon certain events occurring.  This _BoardDistributor_ domain
+     * might even fall away completely.
+     */
+
+    Board* board = new Board();
+    return board;
 
 }

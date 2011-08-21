@@ -25,23 +25,10 @@ public:
       CppUnit::TestSuite *suiteOfTests = new CppUnit::TestSuite("SubjectTest");
 
       suiteOfTests->addTest( new CppUnit::TestCaller<SubjectTestCase>(
-                                     "testEquality",
-                                     &SubjectTestCase::testEquality ) );
-
-      suiteOfTests->addTest( new CppUnit::TestCaller<SubjectTestCase>(
                                      "testAddition",
                                      &SubjectTestCase::testAddition ) );
 
       return suiteOfTests;
-
-    }
-
-    void testEquality() {
-
-//        Subject subject;
-//
-//        CPPUNIT_ASSERT_ASSERTION_PASS(!subject);
-//        CPPUNIT_ASSERT(2 == 1);
 
     }
 

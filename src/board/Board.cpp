@@ -52,7 +52,6 @@ void Board::initialise(BoardInput* boardInput) {
     LOGGER->info(ss.str());
 
     LOGGER->info("Board::initialise - Before notify call.");
-    cout << "GOTJIR!!!!!" << endl;
     notify();
     LOGGER->info("Board::initialise - After notify call.");
 

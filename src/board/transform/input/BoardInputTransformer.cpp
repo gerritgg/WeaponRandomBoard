@@ -5,9 +5,10 @@
  *      Author: c0rn0
  */
 
-#include <string.h>
+#include <cstddef>
 #include "BoardInputTransformer.h"
 #include "ConsoleBoardInputTransformer.h"
+#include "QueryStringBoardInputTransformer.h"
 #include "WebFormBoardInputTransformer.h"
 
 BoardInputTransformer::BoardInputTransformer() {
@@ -27,6 +28,13 @@ BoardInputTransformer::BoardInputTransformer(char *inputItemsArg[],
 }
 
 BoardInputTransformer::~BoardInputTransformer() {
+}
+
+BoardInputTransformer* BoardInputTransformer::createTransformer(
+        string queryString) {
+
+    return new QueryStringBoardInputTransformer(queryString);
+
 }
 
 BoardInputTransformer* BoardInputTransformer::createTransformer(char *argv[],

@@ -28,7 +28,7 @@ void HtmlBoardPrinter::print() {
     vector<int> weaponsIndexesShuffled = subject->getWeaponsIndexesShuffled();
 
     cout << "<table border='1'>" << endl;
-    cout << "<tr><td colspan='2'>Total weapons : "<< weapons.size()
+    cout << "<tr><td colspan='2'>Total items on the board : "<< weapons.size()
         << "</td></tr>";
 
     int i = 0;

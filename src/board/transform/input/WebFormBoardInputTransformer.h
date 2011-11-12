@@ -9,17 +9,20 @@
 #define WEBFORMBOARDINPUTTRANSFORMER_H_
 
 #include <iostream>
+
 #include "BoardInputTransformer.h"
 
 using namespace std;
 
 class WebFormBoardInputTransformer: public BoardInputTransformer {
 public:
+
     WebFormBoardInputTransformer();
     WebFormBoardInputTransformer(char *inputItems[], int numInputItems);
     virtual ~WebFormBoardInputTransformer();
 
     virtual BoardInput* transform();
+
 };
 
 #endif /* WEBFORMBOARDINPUTTRANSFORMER_H_ */

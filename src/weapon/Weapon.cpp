@@ -40,7 +40,8 @@ Weapon* Weapon::createWeapon(string name) {
         return new Rope(name);
     }
 
-    throw new CouldNotCreateWeaponException();
+    return new Weapon(name);
+//    throw new CouldNotCreateWeaponException();
 
 }
 

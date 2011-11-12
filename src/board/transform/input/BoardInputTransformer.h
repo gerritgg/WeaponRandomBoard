@@ -23,6 +23,7 @@ public:
     virtual ~BoardInputTransformer();
 
     virtual BoardInput* transform() = 0;
+    static BoardInputTransformer* createTransformer(string queryString);
     static BoardInputTransformer* createTransformer(char *argv[],
         int numInputItems, int type);
 

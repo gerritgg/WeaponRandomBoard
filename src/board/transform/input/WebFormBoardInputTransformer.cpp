@@ -5,6 +5,8 @@
  *      Author: c0rn0
  */
 
+#include <iostream>
+
 #include "WebFormBoardInputTransformer.h"
 
 WebFormBoardInputTransformer::WebFormBoardInputTransformer() {

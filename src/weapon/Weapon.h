@@ -21,7 +21,13 @@ public:
     virtual ~Weapon();
 
     static Weapon* createWeapon(string name);
-    virtual void use() = 0;
+    /*
+     * C++ Abstract Type lesson:
+     * To make Weapon an abstract type so that it can't be used as a function
+     * return type for example, define the method below as follows:
+     * <code>virtual void use() = 0;</code>
+     */
+    virtual void use();
     string getName();
 
 

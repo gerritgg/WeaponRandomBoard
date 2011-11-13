@@ -16,14 +16,16 @@ class BoardInputTransformer {
 public:
 
     static const int CONSOLE = 1;
-    static const int WEBFORM = 2;
+    static const int WEB_QUERY_STRING = 2;
+    static const int WEB_FORM_TEXTAREA = 3;
 
     BoardInputTransformer();
     BoardInputTransformer(char *inputItems[], int numInputItems);
     virtual ~BoardInputTransformer();
 
     virtual BoardInput* transform() = 0;
-    static BoardInputTransformer* createTransformer(string queryString);
+    static BoardInputTransformer* createTransformer(string inputString,
+        int type);
     static BoardInputTransformer* createTransformer(char *argv[],
         int numInputItems, int type);
 

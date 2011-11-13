@@ -31,9 +31,17 @@ BoardInputTransformer::~BoardInputTransformer() {
 }
 
 BoardInputTransformer* BoardInputTransformer::createTransformer(
-        string queryString) {
+        string inputString, int type) {
 
-    return new QueryStringBoardInputTransformer(queryString);
+    if (type == WEB_QUERY_STRING) {
+        return new QueryStringBoardInputTransformer(inputString);
+    }
+
+    if (type == WEB_FORM_TEXTAREA) {
+        return new WebFormBoardInputTransformer(inputString);
+    }
+
+    return NULL;
 
 }
 
@@ -42,10 +50,6 @@ BoardInputTransformer* BoardInputTransformer::createTransformer(char *argv[],
 
     if (type == CONSOLE) {
         return new ConsoleBoardInputTransformer(argv, numInputItems);
-    }
-
-    if (type == WEBFORM) {
-        return new WebFormBoardInputTransformer(argv, numInputItems);
     }
 
     return NULL;

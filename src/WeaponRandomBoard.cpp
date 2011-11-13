@@ -43,8 +43,6 @@ int main(int argc, char *argv[]) {
         cout << html() << head() << title("Random Board") << head() << endl;
         cout << body().set("bgcolor","#cccccc").set("text","#000000").set("link","#0000ff").set("vlink","#000080") << endl;
 
-        //       cout << h1("This is a demonstration of the GNU CgiCC library") << endl;
-
         string queryString = cgicc.getEnvironment().getQueryString();
 
 //        queryString = "rope=1&firepoker=1";
@@ -53,7 +51,8 @@ int main(int argc, char *argv[]) {
 //            cout << "QueryString : " << queryString << endl;
 
             BoardInputTransformer *transformer = BoardInputTransformer
-                ::createTransformer(queryString);
+                ::createTransformer(queryString, BoardInputTransformer
+                ::WEB_QUERY_STRING);
             BoardInput* boardInput = transformer->transform();
             Board* board = BoardDistributor::distribute(boardInput);
 
@@ -68,38 +67,28 @@ int main(int argc, char *argv[]) {
 
         } else {
 
-            cout << "No QueryString provided!" << endl;
+            form_iterator boardInput = cgicc.getElement("boardinput");
+            if( !boardInput->isEmpty() && boardInput != (*cgicc).end()) {
 
-        }
+                BoardInputTransformer *transformer = BoardInputTransformer
+                    ::createTransformer(**boardInput, BoardInputTransformer
+                    ::WEB_FORM_TEXTAREA);
+                BoardInput* boardInput = transformer->transform();
+                Board* board = BoardDistributor::distribute(boardInput);
 
-        form_iterator fvalue1 = cgicc.getElement("value1");
-        if( !fvalue1->isEmpty() && fvalue1 != (*cgicc).end()) {
-            cout << "Value1: " << **fvalue1 << endl;
-        }
-        else
-            cout << "No text entered for value1" << endl;
+                BoardPrinter* printer = BoardPrinter::createPrinter(BoardPrintType
+                    ::PRINT_TYPE_HTML, board);
 
-        cout << p();
+                board->initialise(boardInput);
 
-        form_iterator fvalue2 = cgicc.getElement("value2");
-        if( !fvalue2->isEmpty() && fvalue2 != (*cgicc).end()) {
-            // Note this is just a different way to access the string class.
-            // See the YoLinux GNU string class tutorial.
-            cout << "Value2: " << (**fvalue2).c_str() << endl;
-        }
+                delete transformer;
+                delete boardInput;
+                delete printer;
 
-        cout << p();
+            } else {
+                cout << "No text entered for boardinput" << endl;
+            }
 
-        form_iterator fvalue3 = cgicc.getElement("value3");
-        if( !fvalue3->isEmpty() && fvalue3 != (*cgicc).end()) {
-            cout << "Value3: " << **fvalue3 << endl;
-        }
-
-        cout << p();
-
-        form_iterator fvalue4 = cgicc.getElement("value4");
-        if( !fvalue4->isEmpty() && fvalue4 != (*cgicc).end()) {
-            cout << "Value4: " << **fvalue4 << endl;
         }
 
         // Close the HTML document

@@ -18,10 +18,14 @@ class WebFormBoardInputTransformer: public BoardInputTransformer {
 public:
 
     WebFormBoardInputTransformer();
-    WebFormBoardInputTransformer(char *inputItems[], int numInputItems);
+    WebFormBoardInputTransformer(string inputString);
     virtual ~WebFormBoardInputTransformer();
 
     virtual BoardInput* transform();
+
+private:
+
+    string _inputString;
 
 };
 

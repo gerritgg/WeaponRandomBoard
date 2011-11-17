@@ -7,7 +7,7 @@
 
 #include "HtmlBoardPrinter.h"
 
-HtmlBoardPrinter::HtmlBoardPrinter(Board* board) : BoardPrinter(board) {
+HtmlBoardPrinter::HtmlBoardPrinter(board::Board* board) : BoardPrinter(board) {
 }
 
 HtmlBoardPrinter::~HtmlBoardPrinter() {

@@ -13,7 +13,7 @@
 class ConsoleBoardPrinter: public BoardPrinter {
 public:
 
-    ConsoleBoardPrinter(Board*);
+    ConsoleBoardPrinter(board::Board*);
     virtual ~ConsoleBoardPrinter();
 
     virtual void print();

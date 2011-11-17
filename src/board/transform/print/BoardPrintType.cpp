@@ -8,11 +8,8 @@
 #include "BoardPrintType.h"
 
 BoardPrintType::BoardPrintType() {
-    // TODO Auto-generated constructor stub
-
 }
 
 BoardPrintType::~BoardPrintType() {
-    // TODO Auto-generated destructor stub
 }
 

@@ -10,7 +10,7 @@
 #include "ConsoleBoardPrinter.h"
 #include "HtmlBoardPrinter.h"
 
-BoardPrinter::BoardPrinter(Board* board) {
+BoardPrinter::BoardPrinter(board::Board* board) {
     subject = board;
     subject->attach(this);
 }
@@ -19,7 +19,7 @@ BoardPrinter::~BoardPrinter() {
 }
 
 BoardPrinter* BoardPrinter::createPrinter(BoardPrintType::PrintType printType,
-        Board* board) {
+        board::Board* board) {
 
     if (printType == BoardPrintType::PRINT_TYPE_PLAIN) {
         return new ConsoleBoardPrinter(board);

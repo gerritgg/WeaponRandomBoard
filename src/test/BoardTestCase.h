@@ -39,7 +39,7 @@ public:
 
     void testEquality() {
 
-        Board board;
+        board::Board board;
         BoardInput* boardInput = new BoardInput();
         board.initialise(boardInput);
 //        CPPUNIT_ASSERT_ASSERTION_PASS(!subject);

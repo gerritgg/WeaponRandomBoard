@@ -13,7 +13,7 @@
 class HtmlBoardPrinter: public BoardPrinter {
 public:
 
-    HtmlBoardPrinter(Board*);
+    HtmlBoardPrinter(board::Board*);
     virtual ~HtmlBoardPrinter();
 
     virtual void print();

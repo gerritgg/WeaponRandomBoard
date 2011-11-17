@@ -14,17 +14,18 @@
 class BoardPrinter : public Observer {
 public:
 
-    BoardPrinter(Board*);
+    BoardPrinter(board::Board*);
     virtual ~BoardPrinter();
 
     virtual void print() = 0;
 
-    static BoardPrinter* createPrinter(BoardPrintType::PrintType, Board*);
+    static BoardPrinter* createPrinter(BoardPrintType::PrintType,
+        board::Board*);
 
 
 protected:
 
-    Board* subject;
+    board::Board* subject;
 
 };
 

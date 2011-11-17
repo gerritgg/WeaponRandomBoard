@@ -18,6 +18,8 @@
 
 using namespace std;
 
+namespace board {
+
 class Board : public Subject {
 public:
 
@@ -45,4 +47,5 @@ private:
 
 };
 
+} /* namespace board */
 #endif /* BOARD_H_ */

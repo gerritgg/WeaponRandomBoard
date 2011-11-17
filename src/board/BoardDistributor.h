@@ -17,7 +17,7 @@ public:
     BoardDistributor();
     virtual ~BoardDistributor();
 
-    static Board* distribute(BoardInput* boardInput);
+    static board::Board* distribute(BoardInput* boardInput);
 
 };
 

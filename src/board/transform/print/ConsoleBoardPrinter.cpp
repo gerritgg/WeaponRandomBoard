@@ -7,7 +7,8 @@
 
 #include "ConsoleBoardPrinter.h"
 
-ConsoleBoardPrinter::ConsoleBoardPrinter(Board* board) : BoardPrinter(board) {
+ConsoleBoardPrinter::ConsoleBoardPrinter(board::Board* board) :
+        BoardPrinter(board) {
 }
 
 ConsoleBoardPrinter::~ConsoleBoardPrinter() {

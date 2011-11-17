@@ -5,10 +5,12 @@
  *      Author: c0rn0
  */
 
-#include <iostream>
-using namespace std;
 
+#include <iostream>
 #include "BoardDistributor.h"
+
+using namespace std;
+using namespace board;
 
 BoardDistributor::BoardDistributor() {
 }

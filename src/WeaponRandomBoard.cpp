@@ -23,6 +23,7 @@
 using namespace std;
 using namespace log4cpp;
 using namespace cgicc;
+using namespace board;
 
 int main(int argc, char *argv[]) {
 

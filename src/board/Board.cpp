@@ -13,6 +13,8 @@
 
 using namespace std;
 
+namespace board {
+
 Logger* Board::LOGGER = Logger::getLogger("Board");
 
 Board::Board() {
@@ -124,3 +126,5 @@ map<int, Weapon*> Board::getWeapons() {
 vector<int> Board::getWeaponsIndexesShuffled() {
     return weaponsIndexShuffled;
 }
+
+} /* namespace board */

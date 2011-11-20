@@ -8,6 +8,7 @@
 #ifndef BOARDINPUTTRANSFORMER_H_
 #define BOARDINPUTTRANSFORMER_H_
 
+#include <cgicc/Cgicc.h>
 #include "BoardInput.h"
 
 using namespace std;
@@ -25,7 +26,7 @@ public:
 
     virtual BoardInput* transform() = 0;
     static BoardInputTransformer* createTransformer(string inputString,
-        int type);
+        int type, cgicc::Cgicc* cgicc);
     static BoardInputTransformer* createTransformer(char *argv[],
         int numInputItems, int type);
 

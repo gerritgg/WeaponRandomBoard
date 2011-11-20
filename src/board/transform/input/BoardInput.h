@@ -22,10 +22,16 @@ public:
     virtual ~BoardInput();
 
     map<string, int> getWeaponsInput();
+    string getBoardName();
+    void setBoardName(string boardName);
+    string getBoardItemsString();
+    void setBoardItemsString(string boardItemsString);
 
 private:
 
     map<string, int> weaponsInput;
+    string _boardName;
+    string _boardItemsString;
 
 };
 

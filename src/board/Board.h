@@ -33,6 +33,8 @@ public:
     void print(BoardPrintType::PrintType printType);
     map<int, Weapon*> getWeapons();
     vector<int> getWeaponsIndexesShuffled();
+    string getName();
+    string itemsToString();
 
 private:
 
@@ -41,6 +43,8 @@ private:
     map<int, Weapon*> weapons;
     vector<int> weaponsIndexesNotShuffled;
     vector<int> weaponsIndexShuffled;
+    string name;
+    string itemsString;
 
     void buildWeapon(string weaponName, int weaponCount);
     void randomise();

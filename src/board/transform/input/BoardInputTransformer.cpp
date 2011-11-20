@@ -31,14 +31,14 @@ BoardInputTransformer::~BoardInputTransformer() {
 }
 
 BoardInputTransformer* BoardInputTransformer::createTransformer(
-        string inputString, int type) {
+        string inputString, int type, cgicc::Cgicc* cgicc) {
 
     if (type == WEB_QUERY_STRING) {
         return new QueryStringBoardInputTransformer(inputString);
     }
 
     if (type == WEB_FORM_TEXTAREA) {
-        return new WebFormBoardInputTransformer(inputString);
+        return new WebFormBoardInputTransformer(cgicc);
     }
 
     return NULL;

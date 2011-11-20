@@ -14,8 +14,9 @@
 WebFormBoardInputTransformer::WebFormBoardInputTransformer() {
 }
 
-WebFormBoardInputTransformer::WebFormBoardInputTransformer(string inputString) {
-    _inputString = inputString;
+WebFormBoardInputTransformer::WebFormBoardInputTransformer(
+        cgicc::Cgicc* cgicc) {
+    _cgicc = cgicc;
 }
 
 WebFormBoardInputTransformer::~WebFormBoardInputTransformer() {
@@ -23,9 +24,22 @@ WebFormBoardInputTransformer::~WebFormBoardInputTransformer() {
 
 BoardInput* WebFormBoardInputTransformer::transform() {
 
-    boost::trim_right(_inputString);
-    boost::replace_all(_inputString, "\r\n", "&");
+    cgicc::form_iterator boardInputString = _cgicc->getElement("boardinput");
+    if( !boardInputString->isEmpty() && boardInputString != (**_cgicc).end()) {
 
-    return (QueryStringBoardInputTransformer(_inputString)).transform();
+    }
+
+    string inputString = **_cgicc->getElement("boardinput");
+    string boardName = **_cgicc->getElement("boardname");
+
+    boost::trim_right(inputString);
+    boost::replace_all(inputString, "\r\n", "&");
+
+    BoardInput* boardInput =  (QueryStringBoardInputTransformer(inputString))
+        .transform();
+    boardInput->setBoardName(boardName);
+    boardInput->setBoardItemsString(inputString);
+
+    return boardInput;
 
 }

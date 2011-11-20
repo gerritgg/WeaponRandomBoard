@@ -18,14 +18,14 @@ class WebFormBoardInputTransformer: public BoardInputTransformer {
 public:
 
     WebFormBoardInputTransformer();
-    WebFormBoardInputTransformer(string inputString);
+    WebFormBoardInputTransformer(cgicc::Cgicc* cgicc);
     virtual ~WebFormBoardInputTransformer();
 
     virtual BoardInput* transform();
 
 private:
 
-    string _inputString;
+    cgicc::Cgicc* _cgicc;
 
 };
 

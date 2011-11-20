@@ -26,7 +26,6 @@ MongoDbBoardStoreManager::~MongoDbBoardStoreManager() {
 
 void MongoDbBoardStoreManager::update(Subject* changedSubject) {
 
-
     if (subject == changedSubject) {
         save();
     }
@@ -39,10 +38,12 @@ void MongoDbBoardStoreManager::save() {
     c.connect("192.168.2.105");
 
     BSONObjBuilder b;
-    b.append("Name", "Board 1");
+    b.append("Name", subject->getName());
     b.appendDate("DateCreated", DateUtil::getCurrentMillis());
     b.appendDate("DateToUse", DateUtil::getMillisForDate(2011, 11, 25));
-    b.append("Items", "1=rope&2=gun&3=gun&4=rope");
+    b.append("ItemsInputString", subject->itemsToString());
+    b.append("ItemsDataString", subject->itemsToString());
+    b.append("ItemsData", subject->itemsToString());
     BSONObj board = b.obj();
     c.insert("tutorial.boards", board);
 

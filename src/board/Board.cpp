@@ -30,6 +30,9 @@ Board::~Board() {
 
 void Board::initialise(BoardInput* boardInput) {
 
+    name = boardInput->getBoardName();
+    itemsString = boardInput->getBoardItemsString();
+
     map<string, int> weaponsInput = boardInput->getWeaponsInput();
     map<string, int>::iterator pos;
 
@@ -125,6 +128,14 @@ map<int, Weapon*> Board::getWeapons() {
 
 vector<int> Board::getWeaponsIndexesShuffled() {
     return weaponsIndexShuffled;
+}
+
+string Board::getName() {
+    return name;
+}
+
+string Board::itemsToString() {
+    return itemsString;
 }
 
 } /* namespace board */

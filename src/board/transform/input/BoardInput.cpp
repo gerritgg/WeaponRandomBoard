@@ -24,3 +24,19 @@ BoardInput::~BoardInput() {
 map<string, int> BoardInput::getWeaponsInput() {
     return weaponsInput;
 }
+
+string BoardInput::getBoardName() {
+    return _boardName;
+}
+
+void BoardInput::setBoardName(string boardName) {
+    _boardName = boardName;
+}
+
+string BoardInput::getBoardItemsString() {
+    return _boardItemsString;
+}
+
+void BoardInput::setBoardItemsString(string boardItemsString) {
+    _boardItemsString = boardItemsString;
+}

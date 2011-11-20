@@ -9,6 +9,7 @@
 #include "board/BoardDistributor.h"
 #include "board/transform/input/BoardInputTransformer.h"
 #include "board/transform/print/BoardPrinter.h"
+#include "board/persist/BoardStoreManager.h"
 
 #include <cgicc/CgiDefs.h>
 #include <cgicc/Cgicc.h>
@@ -53,12 +54,15 @@ int main(int argc, char *argv[]) {
 
             BoardInputTransformer *transformer = BoardInputTransformer
                 ::createTransformer(queryString, BoardInputTransformer
-                ::WEB_QUERY_STRING);
+                ::WEB_QUERY_STRING, NULL);
             BoardInput* boardInput = transformer->transform();
             Board* board = BoardDistributor::distribute(boardInput);
 
             BoardPrinter* printer = BoardPrinter::createPrinter(BoardPrintType
                 ::PRINT_TYPE_HTML, board);
+
+            persist::BoardStoreManager::createStoreManager(
+                persist::BoardStoreType::STORE_TYPE_MONGODB, board);
 
             board->initialise(boardInput);
 
@@ -73,12 +77,15 @@ int main(int argc, char *argv[]) {
 
                 BoardInputTransformer *transformer = BoardInputTransformer
                     ::createTransformer(**boardInput, BoardInputTransformer
-                    ::WEB_FORM_TEXTAREA);
+                    ::WEB_FORM_TEXTAREA, &cgicc);
                 BoardInput* boardInput = transformer->transform();
                 Board* board = BoardDistributor::distribute(boardInput);
 
-                BoardPrinter* printer = BoardPrinter::createPrinter(BoardPrintType
-                    ::PRINT_TYPE_HTML, board);
+                BoardPrinter* printer = BoardPrinter::createPrinter(
+                    BoardPrintType::PRINT_TYPE_HTML, board);
+
+                persist::BoardStoreManager::createStoreManager(
+                    persist::BoardStoreType::STORE_TYPE_MONGODB, board);
 
                 board->initialise(boardInput);
 

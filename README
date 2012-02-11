@@ -1,0 +1,9 @@
+Random board project:
+====================
+
+Provides a frontend + backend for generating random boards from some form of input.  At the moment only a HTML-frontend is supported.
+
+The 2nd generation of the frontend is currently in progress (being re-done in jQuery).  Forthcoming features:
+ - system interaction without any HTML page redirection (desktop-app-feeling)
+ - complete dynamic interaction with generated boards (via querying C++ backend with mongodb behind it)
+ - more to come...

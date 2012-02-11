@@ -1,0 +1,204 @@
+<HTML>
+<HEAD>
+
+<TITLE>Random Board</TITLE>
+
+<!-- 
+1.8.17 Themes: base, black-tie, blitzer, cupertino, dark-hive, dot-luv, eggplant, excite-bike, flick,
+hot-sneaks, humanity, le-frog, mint-choc, overcast, pepper-grinder, redmond, smoothness, south-street, start,
+sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, and vader.
+ -->
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" media="screen" href="http://users.tpg.com.au/j_birch/plugins/superfish/css/superfish.css" /> 
+ 
+<SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="http://layout.jquery-dev.net/download/jquery.layout.min-1.2.0.js"></SCRIPT>
+
+<script src="http://users.tpg.com.au/j_birch/plugins/assets/js/hoverIntent.js"></script> 
+<script src="http://users.tpg.com.au/j_birch/plugins/superfish/js/superfish.js"></script>
+<!--  
+<script src="http://users.tpg.com.au/j_birch/plugins/supersubs/js/supersubs.js"></script> 
+ -->
+
+<SCRIPT type="text/javascript">
+
+$(document).ready(function () {
+	
+	var myLayout;
+	
+	$('body').layout({
+		
+		defaults: {
+			applyDefaultStyles:true
+		},
+
+		north: {
+			showOverflowOnHover:true
+		}
+	
+	});
+	
+    $('ul.sf-menu').superfish({
+    	delay:1000,
+		autoArrows:true,
+		speed:'fast'
+	});
+    
+    $('#aboutLink').click(function() {
+    	$('#aboutDialog').dialog({
+    		modal:true
+    	});
+    });
+    
+    $('#generateBoard').click(function() {
+    	
+    	$('#centerContents').empty();
+    	
+    	$('#centerContents').load('generate-board.html', function() {
+    		
+   	        $("#generateBoardForm").submit(function(event) {
+   	        	
+   	        	/* stop form from submitting normally */
+   	            event.preventDefault();
+   	        	
+   	            /* get some values from elements on the page: */
+   	            var $form = $(this);
+   	            	boarddate = $form.find( 'input[name="boarddate"]' ).val(),
+   	            	boardname = $form.find( 'input[name="boardname"]' ).val(),
+   	            	//replacing of LineFeed happening in jQuery now instead of the backend (backend still)
+   	            	//caters for it though
+   	            	boardinput = $form.find( 'textarea[name="boardinput"]' ).val().replace(/\r\n|\r|\n/g, '&'),
+   	                url = $form.attr('action');
+   	        	
+   	            /* Send the data using post and put the results in a div */
+   	            $.post(url, {boarddate:boarddate, boardname:boardname, boardinput:boardinput},
+   	              function(data) {
+ 	                  //var content = $(data).find('#content');
+   	                  $("#centerContents").empty().append(data);
+   	              }
+   	            );
+   	            
+   	        });
+   	        
+    	});
+    	
+    });
+    
+    $('ul.sf-menu').bind('click',function() {
+    	$(this).hideSuperfishUl();
+	});
+    
+});
+
+</SCRIPT>
+
+</HEAD>
+<BODY>
+<DIV class="ui-layout-center">
+
+	<div id="centerContents">This is where we are going to pump all the meat in :)</div>
+	
+	<div id="aboutDialog" title="About Random Board" style="display:none;">
+	<p>The frontend (web) tool that interacts with the system to generate random boards and interact with them
+	like never before.</p>
+	<p>v0.1</p>
+	</div>
+	
+</DIV>
+
+<DIV class="ui-layout-north">
+
+				<ul id="top-menu-bar" class="sf-menu">
+					<li class="current">
+						<a class="sf-with-ul" href="#a">Board<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li>
+								<a id="generateBoard" href="#aa">Generate</a>
+							</li>
+							<li class="current">
+								<a class="sf-with-ul" href="#ab">Search<span class="sf-sub-indicator"> &#187;</span></a>
+								<ul>
+									<li class="current"><a href="#">menu item</a></li>
+									<li><a href="#aba">Search 1</a></li>
+									<li><a href="#abb">Search 2</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">History</a>
+								<ul>
+									<li><a href="#">History 1</a></li>
+									<li><a href="#">History 2</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li>
+								<a href="#">menu item</a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">menu item</a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">menu item</a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">menu item</a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">menu item</a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#">menu item</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a id="aboutLink" href="#">About</a>
+					</li>	
+				</ul>
+</DIV>
+
+<DIV class="ui-layout-south">Can decide what you want here</DIV>
+<DIV class="ui-layout-east">Can decide what you want here, if anything at all</DIV>
+<DIV class="ui-layout-west">Here we can have more menu related stuff but doesn't belong at the top</DIV>
+</BODY>
+</HTML>

@@ -27,6 +27,7 @@ void HtmlBoardPrinter::print() {
     map<int, Weapon*> weapons = subject->getWeapons();
     vector<int> weaponsIndexesShuffled = subject->getWeaponsIndexesShuffled();
 
+    cout << "<div id='content'>" << endl;
     cout << "<table border='1'>" << endl;
     cout << "<tr><td colspan='2'>Total items on the board : "<< weapons.size()
         << "</td></tr>";
@@ -48,6 +49,7 @@ void HtmlBoardPrinter::print() {
     }
 
     cout << "</table>";
+    cout << "</div>";
 
     cout << endl;
 

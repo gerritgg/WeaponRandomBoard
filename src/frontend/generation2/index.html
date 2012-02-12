@@ -11,6 +11,8 @@ sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, and vader.
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
 <link rel="stylesheet" media="screen" href="http://users.tpg.com.au/j_birch/plugins/superfish/css/superfish.css" />
 <style type="text/css">
+@import "http://datatables.net/release-datatables/media/css/demo_page.css";
+@import "http://datatables.net/release-datatables/media/css/demo_table.css";
 .ui-widget {
     font-size: 0.7em;
 }
@@ -19,6 +21,7 @@ sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, and vader.
 <SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="http://layout.jquery-dev.net/download/jquery.layout.min-1.2.0.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js"></SCRIPT>
 
 <script src="http://users.tpg.com.au/j_birch/plugins/assets/js/hoverIntent.js"></script> 
 <script src="http://users.tpg.com.au/j_birch/plugins/superfish/js/superfish.js"></script>
@@ -89,7 +92,10 @@ $(document).ready(function () {
                                    applyDefaultStyles:true
                                }
                            });
-                           $("#tabs > div > div#tabs-1 > p").html(data);
+                           $("#tabs > div > div#tabs-1").html(data);
+                           $('#board').dataTable({
+                               "iDisplayLength": 50
+                           });
                            
                        });
                     

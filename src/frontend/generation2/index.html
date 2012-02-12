@@ -69,7 +69,7 @@ $(document).ready(function () {
    	            	//replacing of LineFeed happening in jQuery now instead of the backend (backend still)
    	            	//caters for it though
    	            	boardinput = $form.find( 'textarea[name="boardinput"]' ).val().replace(/\r\n|\r|\n/g, '&'),
-   	                url = $form.attr('action');
+   	                url = '/cgi-bin/WeaponRandomBoard';//$form.attr('action');
    	            	
    	            /* Send the data using post and put the results in a div */
    	            $.post(url, {boarddate:boarddate, boardname:boardname, boardinput:boardinput},

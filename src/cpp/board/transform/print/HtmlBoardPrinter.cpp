@@ -27,10 +27,16 @@ void HtmlBoardPrinter::print() {
     map<int, Weapon*> weapons = subject->getWeapons();
     vector<int> weaponsIndexesShuffled = subject->getWeaponsIndexesShuffled();
 
-    cout << "<div id='content'>" << endl;
-    cout << "<table border='1'>" << endl;
-    cout << "<tr><td colspan='2'>Total items on the board : "<< weapons.size()
-        << "</td></tr>";
+    cout << "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display\" id=\"board\" width=\"100%\">" << endl;
+    cout << "<thead>";
+    cout << "<tr>";
+    cout << "<th>Number</th>";
+    cout << "<th>Name</th>";
+    cout << "</tr>";
+    cout << "</thead>";
+    cout << "<tbody>";
+    //    cout << "<tr><td colspan='2'>Total items on the board : "<< weapons.size()
+    //        << "</td></tr>";
 
     int i = 0;
 
@@ -41,15 +47,27 @@ void HtmlBoardPrinter::print() {
 
         if (it != weapons.end()) {
 
-            cout << "<tr><td>" << ++i << "</td><td>" << it->second->getName()
+            if ((i & 1) == 0) {
+                cout << "<tr class=\"even gradeA\">";
+            } else {
+                cout << "<tr class=\"odd gradeA\">";
+            }
+
+            cout << "<td>" << ++i << "</td><td>" << it->second->getName()
                 << "</td></tr>" << endl;
 
         }
 
     }
 
+    cout << "</tbody>";
+    cout << "<tfoot>";
+    cout << "<tr>";
+    cout << "<th>Number</th>";
+    cout << "<th>Name</th>";
+    cout << "</tr>";
+    cout << "</tfoot>";
     cout << "</table>";
-    cout << "</div>";
 
     cout << endl;
 

@@ -9,7 +9,12 @@ hot-sneaks, humanity, le-frog, mint-choc, overcast, pepper-grinder, redmond, smo
 sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, and vader.
  -->
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
-<link rel="stylesheet" media="screen" href="http://users.tpg.com.au/j_birch/plugins/superfish/css/superfish.css" /> 
+<link rel="stylesheet" media="screen" href="http://users.tpg.com.au/j_birch/plugins/superfish/css/superfish.css" />
+<style type="text/css">
+.ui-widget {
+    font-size: 0.7em;
+}
+</style>
  
 <SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></SCRIPT>
@@ -73,10 +78,23 @@ $(document).ready(function () {
    	            	
    	            /* Send the data using post and put the results in a div */
    	            $.post(url, {boarddate:boarddate, boardname:boardname, boardinput:boardinput},
-   	              function(data) {
- 	                  //var content = $(data).find('#content');
-   	                  $("#centerContents").empty().append(data);
-   	              }
+   	                    
+                    function(data) {
+                    
+                       $('#centerContents').load('board-tabs.html', function() {
+                          
+                           $("#tabs").tabs();
+                           $("#tabs").layout({
+                               defaults: {
+                                   applyDefaultStyles:true
+                               }
+                           });
+                           $("#tabs > div > div#tabs-1 > p").html(data);
+                           
+                       });
+                    
+                    }
+   	                  
    	            );
    	            
    	        });

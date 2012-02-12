@@ -40,7 +40,7 @@ void MongoDbBoardStoreManager::save() {
     BSONObjBuilder b;
     b.append("Name", subject->getName());
     b.appendDate("DateCreated", DateUtil::getCurrentMillis());
-    b.appendDate("DateToUse", DateUtil::getMillisForDate(2011, 11, 25));
+    b.appendDate("DateToUse", DateUtil::getMillisForDate(2012, 02, 14));
     b.append("ItemsInputString", subject->itemsToString());
     b.append("ItemsDataString", subject->itemsToString());
     b.append("ItemsData", subject->itemsToString());

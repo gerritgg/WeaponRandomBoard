@@ -53,11 +53,11 @@ $(document).ready(function () {
     
     $('#generateBoard').click(function() {
     	
-    	$('#centerContents').empty();
+        $('#centerContents').empty();
     	
-    	$('#centerContents').load('generate-board.html', function() {
+        $('#centerContents').load('generate-board.html', function() {
     		
-   	        $("#generateBoardForm").submit(function(event) {
+            $("#generateBoardForm").submit(function(event) {
    	        	
    	        	/* stop form from submitting normally */
    	            event.preventDefault();
@@ -70,7 +70,7 @@ $(document).ready(function () {
    	            	//caters for it though
    	            	boardinput = $form.find( 'textarea[name="boardinput"]' ).val().replace(/\r\n|\r|\n/g, '&'),
    	                url = $form.attr('action');
-   	        	
+   	            	
    	            /* Send the data using post and put the results in a div */
    	            $.post(url, {boarddate:boarddate, boardname:boardname, boardinput:boardinput},
    	              function(data) {
@@ -81,6 +81,10 @@ $(document).ready(function () {
    	            
    	        });
    	        
+            $("#datepicker").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+            
     	});
     	
     });

@@ -16,6 +16,17 @@ sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, and vader.
 .ui-widget {
     font-size: 0.7em;
 }
+.ui-layout-pane {
+    padding: 0px !important;
+}
+.sf-menu, .sf-menu * {
+    margin:         0;
+    padding:        0;
+    list-style:     none;
+}
+.sf-menu {
+    line-height:    1.0;
+}
 </style>
  
 <SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
@@ -42,9 +53,12 @@ $(document).ready(function () {
 		},
 
 		north: {
-			showOverflowOnHover:true
+			showOverflowOnHover:true,
+			resizable:false,
+			minSize:43,
+			maxSize:43
 		}
-	
+		
 	});
 	
     $('ul.sf-menu').superfish({

@@ -27,10 +27,68 @@ sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, and vader.
 .sf-menu {
     line-height:    1.0;
 }
+
+
+/**** Masonry ****/
+
+#container {
+  background: #FFF;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  clear: both;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.centered { margin: 0 auto; }
+
+.box {
+  margin: 5px;
+  padding: 5px;
+  background: #D8D5D2;
+  font-size: 11px;
+  line-height: 1.4em;
+  float: left;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.box h2 {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.box img,
+#tumblelog img {
+  display: block;
+  width: 100%;
+}
+
+.rtl .box {
+  float: right;
+  text-align: right; 
+  direction: rtl;
+}
+
+.col1 { width: 100px; }
+.col2 { width: 180px; }
+.col3 { width: 280px; }
+.col4 { width: 380px; }
+.col5 { width: 480px; }
+
+.col1 img { max-width: 100px; }
+.col2 img { max-width: 180px; }
+.col3 img { max-width: 280px; }
+.col4 img { max-width: 380px; }
+.col5 img { max-width: 480px; }
+
 </style>
  
-<SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
-<SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="http://layout.jquery-dev.net/download/jquery.layout.min-1.2.0.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js"></SCRIPT>
 
@@ -39,8 +97,172 @@ sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, and vader.
 <!--  
 <script src="http://users.tpg.com.au/j_birch/plugins/supersubs/js/supersubs.js"></script> 
  -->
-
+ 
+<SCRIPT type="text/javascript" src="http://masonry.desandro.com/jquery.masonry.min.js"></SCRIPT>
 <SCRIPT type="text/javascript">
+
+function SearchResultContainer() {
+    this.searchResults = new Array();
+    this.addResult = function(searchResult) {
+        this.searchResults.push(searchResult);
+    }
+    this.htmlify = function() {
+        var htmlString = "";
+        for (var i = 0; i < this.searchResults.length; i++) {
+            var result = this.searchResults[i];
+            htmlString += "<div class='box col1'><b>Search # " + (i + 1) + "</b><br />";
+            htmlString += result.htmlify();
+            htmlString += "</div>";
+        }
+        return htmlString;
+    }
+    this.flush = function() {
+        this.searchResults = new Array();
+    }
+} 
+
+function SearchResult() {
+    this.playerName = name;
+    this.numbers = new Array();
+    this.playerNameAtNumbers = new Array();
+    this.addPlayerNameAtNumber = function(playerName, number) {
+        this.playerNameAtNumbers.push(new Array(number, playerName));
+    }
+    this.processNumbers = function(numbers) {
+        this.numbers = numbers.split("\s+");
+    }
+    this.htmlifyNumbers = function() {
+        var htmlString = "";
+        for (var i = 0; i < this.numbers.length; i++) {
+            htmlString += this.numbers[i];
+            if (i < this.numbers.length - 1) {
+                htmlString += " ";
+            }
+        }
+        return htmlString;
+    }
+    this.htmlify = function() {
+        var htmlString = "";
+        htmlString += this.playerName + ": " + this.htmlifyNumbers() + "<br />";
+        for (var j = 0; j < this.playerNameAtNumbers.length; j++) {
+            var playerNameAtNumber = this.playerNameAtNumbers[j];
+            htmlString += playerNameAtNumber[0] + " - " + playerNameAtNumber[1];
+            if (j < this.playerNameAtNumbers.length - 1) {
+                htmlString += "<br />";
+            }
+        }
+        return htmlString;
+    }
+} 
+
+var searchResultContainer = new SearchResultContainer();
+
+function loadSearchContent() {
+    
+    $('#eastContents').empty();
+    
+    $('#searchInputContents').load('search.html', function() {
+        
+        $("#searchBoardForm").submit(function(event) {
+            
+            var $form = $(this);
+            
+            var playerName = $form.find('input[name="playerName"]').val();
+            var playerNumbers = $form.find('input[name="playerNumbers"]').val();
+            
+            var searchResult = new SearchResult();
+            searchResult.playerName = playerName;
+            searchResult.processNumbers(playerNumbers);
+            searchResult.addPlayerNameAtNumber("Sarie", 4);
+            searchResult.addPlayerNameAtNumber("Sarie", 11);
+            searchResult.addPlayerNameAtNumber("Piet", 14);
+            searchResultContainer.addResult(searchResult);
+            
+            $("#searchResultContents").html(searchResult.htmlify());
+            
+            $('#searchHistoryContainer').html(searchResultContainer.htmlify());
+            $('#searchHistoryContainer').css("height", "100%");
+            
+            $('#searchHistoryContainer').masonry({
+                itemSelector: '.box',
+                columnWidth: 100
+            });
+            
+            return false;
+            
+        });
+        
+    });
+    
+}
+
+function generateBoard() {
+    
+    $('#centerContents').empty();
+    
+    $('#centerContents').load('generate-board.html', function() {
+        
+        if (boardInputHistory != "") {
+            $("#generateBoardForm").find('textarea[name="boardinput"]').val(boardInputHistory);
+        }
+        
+        $("#generateBoardForm").submit(function(event) {
+            
+            //Flush the search history.
+            searchResultContainer.flush();
+            
+            var $form = $(this);
+            
+            boardInputHistory = $form.find('textarea[name="boardinput"]').val();
+            
+            /* stop form from submitting normally */
+            event.preventDefault();
+            
+            /* get some values from elements on the page: */
+            boarddate = $form.find('input[name="boarddate"]').val(),
+            boardname = $form.find('input[name="boardname"]').val(),
+            //replacing of LineFeed happening in jQuery now instead of the backend (backend still
+            //caters for it though)
+            boardinput = $form.find('textarea[name="boardinput"]').val().replace(/\r\n|\r|\n/g, '&'),
+            url = '/cgi-bin/WeaponRandomBoard';//$form.attr('action');
+                
+            /* Send the data using post and put the results in a div */
+            $.post(url, {boarddate:boarddate, boardname:boardname, boardinput:boardinput},
+                    
+                function(data) {
+                
+                   loadSearchContent();
+                
+                   $('#centerContents').load('board-tabs.html', function() {
+                      
+                       $("#tabs").tabs();
+                       $("#tabs").layout({
+                           defaults: {
+                               applyDefaultStyles:true
+                           }
+                       });
+                       $("#tabs > div > div#tabs-1").html(data);
+                       $('#board').dataTable({
+                           "iDisplayLength": 50
+                       });
+                       
+                   });
+                
+                }
+                  
+            );
+            
+        });
+        
+        $("#datepicker").datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        
+    });
+    
+}
+
+var boardInputHistory = "";
 
 $(document).ready(function () {
 	
@@ -52,13 +274,18 @@ $(document).ready(function () {
 			applyDefaultStyles:true
 		},
 
-		north: {
-			showOverflowOnHover:true,
-			resizable:false,
-			minSize:43,
-			maxSize:43
-		}
-		
+        north: {
+            showOverflowOnHover:true,
+            resizable:false,
+            minSize:43,
+            maxSize:43
+        },
+        
+        east: {
+            size:Math.floor(screen.availWidth / 2),
+            minSize:Math.floor(screen.availWidth / 2)
+        }
+        
 	});
 	
     $('ul.sf-menu').superfish({
@@ -73,59 +300,8 @@ $(document).ready(function () {
     	});
     });
     
-    $('#generateBoard').click(function() {
-    	
-        $('#centerContents').empty();
-    	
-        $('#centerContents').load('generate-board.html', function() {
-    		
-            $("#generateBoardForm").submit(function(event) {
-   	        	
-   	        	/* stop form from submitting normally */
-   	            event.preventDefault();
-   	        	
-   	            /* get some values from elements on the page: */
-   	            var $form = $(this);
-   	            	boarddate = $form.find( 'input[name="boarddate"]' ).val(),
-   	            	boardname = $form.find( 'input[name="boardname"]' ).val(),
-   	            	//replacing of LineFeed happening in jQuery now instead of the backend (backend still)
-   	            	//caters for it though
-   	            	boardinput = $form.find( 'textarea[name="boardinput"]' ).val().replace(/\r\n|\r|\n/g, '&'),
-   	                url = '/cgi-bin/WeaponRandomBoard';//$form.attr('action');
-   	            	
-   	            /* Send the data using post and put the results in a div */
-   	            $.post(url, {boarddate:boarddate, boardname:boardname, boardinput:boardinput},
-   	                    
-                    function(data) {
-                    
-                       $('#centerContents').load('board-tabs.html', function() {
-                          
-                           $("#tabs").tabs();
-                           $("#tabs").layout({
-                               defaults: {
-                                   applyDefaultStyles:true
-                               }
-                           });
-                           $("#tabs > div > div#tabs-1").html(data);
-                           $('#board').dataTable({
-                               "iDisplayLength": 50
-                           });
-                           
-                       });
-                    
-                    }
-   	                  
-   	            );
-   	            
-   	        });
-   	        
-            $("#datepicker").datepicker({
-                dateFormat: 'yy-mm-dd'
-            });
-            
-    	});
-    	
-    });
+    $('#generateBoardA').click(generateBoard);
+    $('#generateBoardB').click(generateBoard);
     
     $('ul.sf-menu').bind('click',function() {
     	$(this).hideSuperfishUl();
@@ -156,7 +332,7 @@ $(document).ready(function () {
 						<a class="sf-with-ul" href="#a">Board<span class="sf-sub-indicator"> &#187;</span></a>
 						<ul>
 							<li>
-								<a id="generateBoard" href="#aa">Generate</a>
+								<a id="generateBoardA" href="#aa">Generate</a>
 							</li>
 							<li class="current">
 								<a class="sf-with-ul" href="#ab">Search<span class="sf-sub-indicator"> &#187;</span></a>
@@ -239,8 +415,13 @@ $(document).ready(function () {
 				</ul>
 </DIV>
 
-<DIV class="ui-layout-south">Can decide what you want here</DIV>
-<DIV class="ui-layout-east">Can decide what you want here, if anything at all</DIV>
-<DIV class="ui-layout-west">Here we can have more menu related stuff but doesn't belong at the top</DIV>
+<DIV class="ui-layout-south"><a id="generateBoardB" href="#aa">Generate</a></DIV>
+<DIV class="ui-layout-east">
+    <div id="searchInputContents">Search functionality will go here</div>
+    <div id="searchResultContents"></div>
+</DIV>
+<!-- 
+<DIV class="ui-layout-west"></DIV>
+ -->
 </BODY>
 </HTML>

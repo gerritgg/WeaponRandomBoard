@@ -35,8 +35,7 @@ void HtmlBoardPrinter::print() {
     cout << "</tr>";
     cout << "</thead>";
     cout << "<tbody>";
-    //    cout << "<tr><td colspan='2'>Total items on the board : "<< weapons.size()
-    //        << "</td></tr>";
+    cout << "<tbody>";
 
     int i = 0;
 
@@ -53,7 +52,7 @@ void HtmlBoardPrinter::print() {
                 cout << "<tr class=\"odd gradeA\">";
             }
 
-            cout << "<td>" << ++i << "</td><td>" << it->second->getName()
+            cout << "<td>" << ++i << " - " << it->second->getName()
                 << "</td></tr>" << endl;
 
         }

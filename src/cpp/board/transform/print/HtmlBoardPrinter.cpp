@@ -30,13 +30,10 @@ void HtmlBoardPrinter::print() {
     cout << "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display\" id=\"board\" width=\"100%\">" << endl;
     cout << "<thead>";
     cout << "<tr>";
-    cout << "<th>Number</th>";
-    cout << "<th>Name</th>";
+    cout << "<th>Board Item</th>";
     cout << "</tr>";
     cout << "</thead>";
     cout << "<tbody>";
-    //    cout << "<tr><td colspan='2'>Total items on the board : "<< weapons.size()
-    //        << "</td></tr>";
 
     int i = 0;
 
@@ -53,7 +50,7 @@ void HtmlBoardPrinter::print() {
                 cout << "<tr class=\"odd gradeA\">";
             }
 
-            cout << "<td>" << ++i << "</td><td>" << it->second->getName()
+            cout << "<td>" << ++i << " - " << it->second->getName()
                 << "</td></tr>" << endl;
 
         }
@@ -63,8 +60,7 @@ void HtmlBoardPrinter::print() {
     cout << "</tbody>";
     cout << "<tfoot>";
     cout << "<tr>";
-    cout << "<th>Number</th>";
-    cout << "<th>Name</th>";
+    cout << "<th>Board Item</th>";
     cout << "</tr>";
     cout << "</tfoot>";
     cout << "</table>";

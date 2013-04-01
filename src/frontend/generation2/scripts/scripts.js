@@ -140,7 +140,8 @@ function generateBoard() {
                        });
                        $("#tabs > div > div#tabs-1").html(data);
                        $('#board').dataTable({
-                           "iDisplayLength": 50
+                           "iDisplayLength": 50,
+                           "aaSorting": []
                        });
                        
                    });
